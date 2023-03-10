@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "MarcusDenker 3/10/2023 14:47",
+	"super" : "Object",
+	"category" : "SoilHistoryExperiments",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "Notes",
+	"type" : "normal"
+}
