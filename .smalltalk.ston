@@ -1,0 +1,10 @@
+SmalltalkCISpec {
+  #loading : [
+    SCIMetacelloLoadSpec {
+      #baseline : 'SoilHistoryExperiments',
+      #platforms : [ #pharo ],
+      #directory : 'src',
+      #onConflict : #useIncoming
+    }
+  ]
+}
