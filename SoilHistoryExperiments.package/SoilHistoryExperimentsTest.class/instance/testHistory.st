@@ -1,7 +1,7 @@
 tests
 testHistory
 	| tx |
-
+ 
 	tx := soil newTransaction.
 	tx root: {1}.
 	tx commit.
