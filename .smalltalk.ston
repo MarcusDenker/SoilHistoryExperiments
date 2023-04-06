@@ -3,7 +3,7 @@ SmalltalkCISpec {
     SCIMetacelloLoadSpec {
       #baseline : 'SoilHistoryExperiments',
       #platforms : [ #pharo ],
-      #directory : 'src',
+      #directory : '',
       #onConflict : #useIncoming
     }
   ]
