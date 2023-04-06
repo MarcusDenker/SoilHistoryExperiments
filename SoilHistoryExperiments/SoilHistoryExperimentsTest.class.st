@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'soil'
 	],
-	#category : 'SoilHistoryExperiments'
+	#category : #SoilHistoryExperiments
 }
 
 { #category : #accessing }
@@ -55,7 +55,7 @@ SoilHistoryExperimentsTest >> testHistory [
 SoilHistoryExperimentsTest >> testHistoryCommitPastIsError [
 	| tx |
 
-	tx := soil newTransaction.
+	tx := soil newTransaction. 
 	tx root: {1}.
 	tx commit.
 
