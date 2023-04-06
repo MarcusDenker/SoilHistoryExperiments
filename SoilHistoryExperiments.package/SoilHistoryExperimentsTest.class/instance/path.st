@@ -1,3 +1,0 @@
-accessing
-path 
-	^ 'soil-historytests'

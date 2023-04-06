@@ -1,5 +1,14 @@
-as yet unclassified
-apiIdeas
+"
+Just some notes
+"
+Class {
+	#name : #Notes,
+	#superclass : #Object,
+	#category : 'SoilHistoryExperiments'
+}
+
+{ #category : #'as yet unclassified' }
+Notes >> apiIdeas [
 	"
 	We want to be able to create a transaction in the Past
 	Soil newTransaction: aDate
@@ -10,3 +19,4 @@ apiIdeas
 	
 	
 	"
+]
