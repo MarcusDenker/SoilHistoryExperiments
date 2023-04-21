@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'soil'
 	],
-	#category : 'SoilHistoryExperiments'
+	#category : #SoilHistoryExperiments
 }
 
 { #category : #accessing }
@@ -75,5 +75,5 @@ SoilHistoryExperimentsTest >> testHistoryCommitPastIsError [
 	"But we can not change it as there are newer commits"
 	tx root at: 1 put: 3.
 	tx markDirty: tx root.
-	self should: [tx commit] raise: SOObjectHasConcurrentChange
+	self should: [tx commit] raise: SoilObjectHasConcurrentChange
 ]
