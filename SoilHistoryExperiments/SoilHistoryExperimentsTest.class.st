@@ -52,6 +52,38 @@ SoilHistoryExperimentsTest >> testHistory [
 ]
 
 { #category : #tests }
+SoilHistoryExperimentsTest >> testHistoryByDate [
+	| tx root dateAndTime|
+	self skip.
+	"TODO"
+	dateAndTime := DateAndTime now.
+
+	tx := soil newTransaction.
+	root := SoilPersistentDictionary new.
+	tx root: SoilPersistentDictionary new.
+	tx root at: #value put: 1.
+	tx root at: #versionMapping put: SoilPersistentDictionary new.
+	"we fake the dates for now"
+	"should be timestamp"
+	(tx root at: #versionMapping) at: dateAndTime - (Duration days: 1) put: 2.
+	(tx root at: #versionMapping) at: dateAndTime put: 3.
+	tx commit.
+
+	tx := soil newTransaction.
+	tx root at: #value put: 2.
+	tx markDirty: tx root.
+	tx commit.
+
+	tx := soil newTransaction.
+	self assert:( tx root at: #value) equals: 2.
+	tx := soil newTransactionForDate: dateAndTime - (Duration days: 1).
+	self assert: (tx root at: #value) equals: 1.
+	
+	tx := soil newTransactionForDate: dateAndTime - (Duration days: 2).
+	self assert: (tx root at: #value) equals: 1.
+]
+
+{ #category : #tests }
 SoilHistoryExperimentsTest >> testHistoryCommitPastIsError [
 	| tx |
 
