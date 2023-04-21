@@ -3,7 +3,7 @@ Extension { #name : #Soil }
 { #category : #'*SoilHistoryExperiments' }
 Soil >> newTransactionForVersion: anInteger [
 
-	^ SOTransaction new
+	^ SoilTransaction new
 		  soil: self;
 		  readVersion: anInteger;
 		  yourself
