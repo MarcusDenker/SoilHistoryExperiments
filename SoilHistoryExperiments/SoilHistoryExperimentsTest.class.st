@@ -63,23 +63,29 @@ SoilHistoryExperimentsTest >> testHistoryByDate [
 	tx root: SoilPersistentDictionary new.
 	tx root at: #value put: 1.
 	tx root at: #versionMapping put: SoilPersistentDictionary new.
-	"we fake the dates for now"
-	"should be timestamp"
-	(tx root at: #versionMapping) at: dateAndTime - (Duration days: 1) put: 2.
-	(tx root at: #versionMapping) at: dateAndTime put: 3.
+	"we fake the dates for now. we simulate that this transaction was done yesterday"
+	(tx root at: #versionMapping) at: dateAndTime - (Duration days: 1) put: soil databaseVersion + 1.
+	
 	tx commit.
 
 	tx := soil newTransaction.
+	"This transaction is done now"
 	tx root at: #value put: 2.
+	(tx root at: #versionMapping) at: dateAndTime put: soil databaseVersion + 1.
 	tx markDirty: tx root.
 	tx commit.
 
+	"now we read the current version, not giving any date"
 	tx := soil newTransaction.
 	self assert:( tx root at: #value) equals: 2.
-	tx := soil newTransactionForDate: dateAndTime - (Duration days: 1).
-	self assert: (tx root at: #value) equals: 1.
 	
-	tx := soil newTransactionForDate: dateAndTime - (Duration days: 2).
+	"do the same, but using the date of now"
+	tx := soil newTransactionForDate: dateAndTime.
+	self assert: (tx root at: #value) equals: 2.
+	
+	"now we read the value from yesterday"
+	
+	tx := soil newTransactionForDate: dateAndTime - (Duration days: 1).
 	self assert: (tx root at: #value) equals: 1.
 ]
 
@@ -104,7 +110,7 @@ SoilHistoryExperimentsTest >> testHistoryCommitPastIsError [
 
 	tx := soil newTransactionForVersion: soil databaseVersion - 1.
 	self assert: tx root equals: {1}.
-	"But we can not change it as there are newer commits"
+	"But we can not change it as there are newer commits, the database does not support forks yet"
 	tx root at: 1 put: 3.
 	tx markDirty: tx root.
 	self should: [tx commit] raise: SoilObjectHasConcurrentChange
