@@ -10,7 +10,7 @@ BaselineOfSoilHistoryExperiments >> baseline: spec [
 
 	spec for: #'common' do: [
 		spec package: #SoilHistoryExperiments with: [ ]].
-		spec baseline: 'Soil' with: [ spec repository: 'github://ApptiveGrid/Soil:development/src' ].
+		spec baseline: 'Soil' with: [ spec repository: 'github://ApptiveGrid/Soil:main/src' ].
 
 	spec
 		group: 'default' with: #( 'Soil' 'SoilHistoryExperiments' )
