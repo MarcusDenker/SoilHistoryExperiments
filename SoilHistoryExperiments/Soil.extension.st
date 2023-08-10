@@ -5,7 +5,7 @@ Soil >> newTransactionForDate: aTimeStamp [
 	| tx readVersion dates readDate |
 	tx := self newTransaction.
 	dates := (tx root at: #versionMapping) keys.
-	readDate := dates detect: [:t | t >= aTimeStamp ].
+	readDate := (dates sort: [:a :b | a < b ]) detect: [:t | t >= aTimeStamp ].
 	readVersion := (tx root at: #versionMapping) at: readDate.
 	tx abort.
 	
